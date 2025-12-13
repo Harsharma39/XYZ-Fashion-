@@ -1,0 +1,48 @@
+/* Minimal CSS */
+* { margin: 0; padding: 0; }
+
+.app {
+  background: black;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.construction-icon {
+  font-size: 80px;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 30px;
+}
+
+.message {
+  font-size: 20px;
+  color: #ccc;
+  margin-bottom: 50px;
+  line-height: 1.5;
+}
+
+.contact a {
+  color: gold;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 36px; }
+  .construction-icon { font-size: 60px; }
+  .message { font-size: 18px; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 28px; }
+  .construction-icon { font-size: 50px; }
+  .message { font-size: 16px; }
+}

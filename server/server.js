@@ -1,0 +1,186 @@
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+
+const app = express();
+const PORT = 5000;
+
+// Create public folder
+const publicPath = path.join(__dirname, 'public');
+if (!fs.existsSync(publicPath)) {
+    fs.mkdirSync(publicPath, { recursive: true });
+}
+
+// Clean HTML with NO timer/progress
+const htmlContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Construction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            background: #000000;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 3rem;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .construction-icon {
+            font-size: 8rem;
+            color: #FFD700;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+        
+        .highlight {
+            color: #FFD700;
+        }
+        
+        .message {
+            font-size: 1.8rem;
+            color: #CCCCCC;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+        
+        .contact {
+            font-size: 1.5rem;
+            color: #888888;
+            margin-top: 3rem;
+        }
+        
+        .contact a {
+            color: #FFD700;
+            text-decoration: none;
+            border-bottom: 1px solid #FFD700;
+            padding: 5px 10px;
+        }
+        
+        .tech-stack {
+            margin-top: 2rem;
+            color: #666666;
+            font-size: 1rem;
+        }
+        
+        /* Decorative construction elements */
+        .sign {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+        
+        .sign-1 {
+            top: 10%;
+            left: 10%;
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        .sign-2 {
+            bottom: 15%;
+            right: 10%;
+            animation: float 8s infinite ease-in-out reverse;
+        }
+        
+        .sign-3 {
+            top: 20%;
+            right: 15%;
+            animation: spin 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .construction-icon { font-size: 5rem; }
+            .message { font-size: 1.3rem; }
+            .sign { display: none; }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 2.2rem; letter-spacing: 3px; }
+            .construction-icon { font-size: 4rem; }
+            .message { font-size: 1.1rem; }
+            .contact { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative signs -->
+    <div class="sign sign-1">🚧</div>
+    <div class="sign sign-2">⛑️</div>
+    <div class="sign sign-3">🛠️</div>
+    
+    <div class="container">
+        <div class="construction-icon">
+            <i class="fas fa-hard-hat"></i>
+        </div>
+        
+        <h1><span class="highlight">SITE</span> UNDER CONSTRUCTION</h1>
+        
+        <div class="message">
+            We're currently working on building something amazing.<br>
+            Please check back soon for updates!
+        </div>
+        
+        <div class="contact">
+            <p>Need to reach us?</p>
+            <p><a href="mailto:contact@example.com">contact@example.com</a></p>
+        </div>
+        
+        <div class="tech-stack">
+            Powered by MEN Stack
+        </div>
+    </div>
+</body>
+</html>`;
+
+// Write HTML file
+fs.writeFileSync(path.join(publicPath, 'index.html'), htmlContent);
+
+// Serve static files
+app.use(express.static(publicPath));
+
+// Route
+app.get('/', (req, res) => {
+    res.sendFile(path.join(publicPath, 'index.html'));
+});
+
+app.listen(PORT, () => {
+    console.log(`✅ Server running at http://localhost:${PORT}`);
+});
