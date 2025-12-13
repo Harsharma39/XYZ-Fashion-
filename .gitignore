@@ -1,34 +1,5 @@
-# Node modules
 node_modules/
+package-lock.json
 npm-debug.log
-yarn-error.log
-
-# Build outputs
-dist/
-build/
-.client/
-.out/
-.next/
-
-# Environment
 .env
-.env.local
-.env.production.local
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# System
 .DS_Store
-Thumbs.db
-
-# Logs
-logs
-*.log
-node_modules/
-.client/
-.next/
-dist/
